@@ -2,7 +2,7 @@
   <div>
     <form>
       <button v-on:click="addTodo()">ADD TASK</button>
-      <button @click="removeTodo()">DELETE FINISHED TASKS</button>
+      <button @click="removeTodo()">DELETE FINISHED TASKS </button>
       <p>input: <input type="text" v-model="newTodo"></p>
       <p>task: {{ newTodo }}</p>
     </form>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
