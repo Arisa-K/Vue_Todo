@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ msg }}
+    {{ msg }}</h1>
     <form>
       <button>ADD TASK</button>
       <button>DELETE FINISHED TASKS</button>
@@ -10,7 +10,7 @@
     <div class="task-list">
       <label class="task-list__item"
               v-for="todo in todos">
-        <input type="checkbox"><button>EDIT</button>{{ todo.text }}
+        <input type="checkbox"><button>EDIT</button>{{ todo.text}}
       </label>
     </div>
   </div>
