@@ -1,24 +1,19 @@
 <template>
-  <div>
+  <div id="app">
+    <h2>To Do</h2>
     <form>
-      <button v-on:click="addTodo()">ADD TASK</button>
-      <button @click="removeTodo()">DELETE FINISHED TASKS </button>
-      <p>input: <input type="text" v-model="newTodo"></p>
-      <p>task: {{ newTodo }}</p>
+      <input type="text" v-model="newItem" />
+      <button v-on:click="addItem">Add</button>
     </form>
-    <div class="task-list">
-      <label class="task-list__item"
-              v-for="todo in todos"
-              v-bind:class="{ 'task-list__item--checked': todo.done }"
-              >
-        <input type="checkbox" v-model="todo.done">
-        <input type="checkbox" v-model="todo.editing">
-        <input v-if="todo.editing" v-model="todo.text" @keyup.enter="todo.editing =!todo.editing">
-        <span v-else>{{ todo.text }}</span>
-
-      </label>
-    </div>
+    <ul>
+      <li v-for="(todo,index) in todos">
+        <input type="checkbox" v-model="todo.isDone">
+        <span v-bind:class="{done:todo.isDone}">{{ todo.item }}</span>
+        <button v-on:click="deleteItem(index)">Delete</button>
+      </li>
+    </ul>
   </div>
+
 </template>
 
 <script>
@@ -27,54 +22,38 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      todos : [
-        {text : 'vue-router', done: false},
-        {text : 'vuex', done: false},
-        {text : 'vue-loeader', done: false},
-        {text : 'awesome-vue', done: true},
-      ],
-      newTodo:""
+      todos : [],
+      newItem:""
     }
   },
-  methods: {
-    addTodo: function(event){
-      let text = this.newTodo && this.newTodo.trim()
-      if (!text){
-        return
-      }
-      this.todos.push({
-        text: text,
-        done: false,
-        editing: false
-      })
-      this.newTodo = ''
-    },
-    removeTodo: function(event) {
-      for(let i = this.todos.length -1; i>= 0; i--){
-        if (this.todos[i].done)this.todos.splice(i,1)
-      }
+  methods:{
+    addItem: function(event){
+      //alert();
+      if(this.newItem == '') return;
+      
+      var todo = {
+        item: this.newItem,
+        isDone: false
+      };
+
+      this.todos.push(todo);
+      this.newItem = '';
+    }, 
+    deleteItem: function(index){
+      // alert(index);
+      this.todos.splice(index,1)
     }
-  }
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@mixin flex-vender() {
-  display: flex;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
+#app ul {
+  list-style: none;
 }
-.task-list {
-  @include flex-vender;
-  flex-direction: column;
-  align-items: center;
-  &__item {
-    width: 270px;
-    text-align: left;
-    
-  }
+#app li>span.done{
+  text-decoration: line-through;
 }
+
 </style>
