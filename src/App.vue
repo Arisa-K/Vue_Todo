@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="./assets/dryflower.jpg" width="200">
     <h1>Todo Management.</h1>
     <hr />
     <router-view></router-view>

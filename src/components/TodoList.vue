@@ -5,24 +5,28 @@
       <input type="text" v-model="newItem" />
       <button v-on:click="addItem">Add</button>
     </form>
-    <ul>
-      <li v-for="(todo,index) in todos">
-        <input type="checkbox" v-model="todo.isDone">
-        <span v-bind:class="{done:todo.isDone}">{{ todo.item }}</span>
-        <button v-on:click="deleteItem(index)">Delete</button>
-      </li>
-    </ul>
+    <todo  
+      v-for ="t in todos"
+      :todo ="t"
+    />
   </div>
 
 </template>
 
 <script>
+import Todo from "@/components/Todo.vue"
+
 export default {
+  components: {
+    Todo,
+  },
   name: 'Hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      todos : [],
+      todos : [
+        {item: "aaa"},{item: "iiiii"}
+      ],
       newItem:""
     }
   },
