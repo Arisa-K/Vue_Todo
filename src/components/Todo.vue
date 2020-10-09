@@ -1,10 +1,11 @@
 <template>
   <div class="toDo_box">
-    <div class="todo">
+    <div class="todo" >
       <input class="checkbox" type="checkbox" v-model="todo.isDone">
       <div class="detail">
         {{ todo.item }}
       </div>
+
 
     </div>
   </div>
@@ -18,6 +19,12 @@ export default {
   data(){
     return{
 
+    }
+  },
+  methods:{
+    deleteItem: function(index){
+    // alert(index);
+    this.todos.splice(index,1)
     }
   }
 }
@@ -42,5 +49,8 @@ export default {
 .detail{
   width: 187px;
   line-height: 30px;
+}
+.delete{
+  display: none;
 }
 </style>
