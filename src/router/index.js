@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import TodoList from '@/components/TodoList'
 import HelloWorld from '@/components/HelloWorld'
 import DoneList from '@/components/DoneList'
+import 'es6-promise/auto'
 
 Vue.use(Router)
 

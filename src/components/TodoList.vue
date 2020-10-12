@@ -1,58 +1,42 @@
 <template>
-  <div id="app">
-    <h2>To Do</h2>
-    <form>
-      <input type="text" v-model="newItem" />
-      <button v-on:click="addItem">Add</button>
-    </form>
-    <todo  
-      v-for ="t in todos"
-      :todo ="t"
-    />
+  <div>
+    <div class="todo_box">
+      <add-todo/>
+      <ul class="todos">
+        <todo v-for="todo in doingTodos" :todo="todo" :key="todo.id"/>
+      </ul>
+    </div>
   </div>
-
 </template>
 
 <script>
-import Todo from "@/components/Todo.vue"
+import { mapGetters } from 'vuex'
+import AddTodo from './AddTodo.vue'
+import Todo from './Todo.vue'
 
 export default {
-  components: {
+  components:{
     Todo,
+    AddTodo
   },
-  name: 'Hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-      todos : [
-        {item: "aaa"},{item: "iiiii"}
-      ],
-      newItem:""
-    }
-  },
-  methods:{
-    addItem: function(event){
-      //alert();
-      if(this.newItem == '') return;
-      
-      var todo = {
-        item: this.newItem,
-        isDone: false
-      };
-
-      this.todos.push(todo);
-      this.newItem = '';
-    }, 
-    deleteItem: function(index){
-      // alert(index);
-      this.todos.splice(index,1)
-    }
-  },
+  computed: {
+    ...mapGetters([
+      'doingTodos'
+    ])
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.tooo_box{
+  background-color: #dfb5d4;
+  width: 200px;
+  font-size: 1rem;
+  height: 30px;
+  margin: auto;
+  margin-top:10px ;
+}
 #app ul {
   list-style: none;
 }

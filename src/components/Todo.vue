@@ -1,37 +1,23 @@
 <template>
-  <div class="toDo_box">
-    <div class="todo" >
-      <input class="checkbox" type="checkbox" v-model="todo.isDone">
-      <div class="detail">
-        {{ todo.item }}
-      </div>
-
-
-    </div>
+  <div class="todo_box">
+    <li class="todo">
+      <input class="checkbox" type="checkbox" v-model="todo.done">
+      <span class="detail">{{ todo.text }}</span>
+    </li>
   </div>
-  
 </template>
+
 <script>
 export default {
-  props:{
-    todo: {}
-  },
-  data(){
-    return{
-
-    }
-  },
-  methods:{
-    deleteItem: function(index){
-    // alert(index);
-    this.todos.splice(index,1)
+  props: {
+    todo: {
     }
   }
 }
 </script>
 
 <style scoped>
-.toDo_box{
+.todo_box{
   background-color: #dfb5d4;
   width: 200px;
   font-size: 1rem;
