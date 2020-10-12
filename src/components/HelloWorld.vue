@@ -46,10 +46,6 @@ export default {
   @include flex-vender;
   flex-direction: column;
   align-items: center;
-  &__item {
-    width: 270px;
-    text-align: left;
-    
-  }
+ 
 }
 </style>
