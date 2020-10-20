@@ -1,8 +1,8 @@
 const todos = {
   state: {
     todos: [
-      {id:1, text : 'テスト', done: false},
-      {id:2, text : 'テスト２', done: true}
+      {id:1, newTodo : 'テスト', done: false},
+      {id:2, newTodo : 'テスト２', done: true}
     ]
   },
   getters: {
@@ -16,7 +16,7 @@ const todos = {
     ADD_TODO (state, text) {//状態を第一引数として受け取る。第二引数をtextが受け渡し
       let todo = {
         id: Math.max(0, ...state.todos.map(t => t.id)) + 1,//todoのid番号に1足したものをidとする
-        text: text,
+        newTodo: text,
         done: false
       }
       state.todos.push(todo);
@@ -24,7 +24,7 @@ const todos = {
   },
   actions: {
     addTodo (context, todo) {
-      context.commit('ADD_TODO',todo.text);//ミューテーションの中の動きをコミットする
+      context.commit('ADD_TODO',todo.newTodo);//ミューテーションの中の動きをコミットする
     }
   }
 };

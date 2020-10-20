@@ -1,6 +1,8 @@
 <template>
   <form>
-    <input
+     <!-- <pre>{{ $data }}</pre> -->
+    <div class="addTodo_field">
+      <input
       class ="add_todo_box"
       type="text"
       placeholder="todo内容"
@@ -10,11 +12,15 @@
     <button class="addtodo_btn" @click="add">
         <i class="far fa-check-square"></i>
     </button>
+    </div>
   </form>
+   
 
 </template>
 <script>
 import { mapActions } from 'vuex'
+import db from "@/firebase";
+import firebase from "firebase"; 
 
 export default {
   data() {
@@ -33,9 +39,15 @@ export default {
         };
         let trimedText = this.removeBlank();
         this.addTodo({
-          text: trimedText
+          newTodo: trimedText
         });
         this.makeTodoEmpty();//追加した後にinputの中を空欄にする！
+        //firebaseに接続
+       db.collection('todos').add({
+        newTodo: text,
+        done: false,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      })
       },
       removeBlank(){
         return this.newTodo.trim();//後ろにブランク入ってたら消すよ〜って感じ！
@@ -48,9 +60,13 @@ export default {
 </script>
 
 <style scoped>
+  .addTodo_field{
+    width: 300px;
+    margin: auto;
+  }
   .add_todo_box {
     height:2em;
-    width: 400px;
+    width: 250px;
   }
   .addtodo_btn{
     background:none;
