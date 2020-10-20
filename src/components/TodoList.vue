@@ -2,9 +2,9 @@
   <div>
     <div class="todo_box">
       <add-todo/>
-      <ul class="todos">
+      <div class="todos">
         <todo v-for="todo in doingTodos" :todo="todo" :key="todo.id"/>
-      </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
 import { mapGetters } from 'vuex'
 import AddTodo from './AddTodo.vue'
 import Todo from './Todo.vue'
+import db from "@/firebase"
 
 export default {
   components:{
